@@ -13,7 +13,6 @@ const search = async (req, res) => {
     }
 
     const response = await axios.get(`https://swapi.dev/api/people/?search=${search}`);
-
     const results = response.data.results;
 
     if (cachedResult) {
@@ -24,7 +23,7 @@ const search = async (req, res) => {
         await Search.create({ payload: search, results, datetime: Date.now() });
     }
 
-    return res.status(200).json({ message: 'Success', results: results })
+    return res.status(200).json({ message: 'Fetched Successfully', results })
 }
 
 module.exports = { search };
